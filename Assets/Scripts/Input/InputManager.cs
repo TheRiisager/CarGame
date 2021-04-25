@@ -54,7 +54,15 @@ public class InputManager : MonoBehaviour
         return controls.Car.Brake.ReadValue<float>();
     }
 
-    public 
+    public bool getMenuButton()
+    {
+        return controls.Car.Menu.triggered;
+    }
+
+    public bool getResetButton()
+    {
+        return controls.Car.Reset.triggered;
+    }
 
 
 
