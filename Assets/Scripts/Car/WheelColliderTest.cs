@@ -7,6 +7,7 @@ public class WheelColliderTest : MonoBehaviour
     [SerializeField] private List<AxleInfo> axleInfos;
     [SerializeField] private float maxMotorTorque;
     [SerializeField] private float maxSteeringAngle;
+    [SerializeField] private float maxBrakeForce;
     private InputManager inputManager;
     void Start()
     {
@@ -17,26 +18,31 @@ public class WheelColliderTest : MonoBehaviour
     {
         float motor = maxMotorTorque * inputManager.GetAccelerator();
         float steering = maxSteeringAngle * inputManager.GetSteering();
+        float brake = maxBrakeForce * inputManager.GetBrake();
 
         foreach (AxleInfo axleInfo in axleInfos)
         {
-            if(axleInfo.steering)
+            if (axleInfo.steering)
             {
                 axleInfo.leftWheel.steerAngle = steering;
                 axleInfo.rightWheel.steerAngle = steering;
             }
 
-            if(axleInfo.motor)
+            if (axleInfo.motor)
             {
                 axleInfo.leftWheel.motorTorque = motor;
                 axleInfo.rightWheel.motorTorque = motor;
             }
+            
+            axleInfo.leftWheel.brakeTorque = brake;
+            axleInfo.rightWheel.brakeTorque = brake;
         }
     }
 }
 
 [System.Serializable]
-public class AxleInfo {
+public class AxleInfo
+{
     public WheelCollider leftWheel;
     public WheelCollider rightWheel;
     public bool motor; // is this wheel attached to motor?
