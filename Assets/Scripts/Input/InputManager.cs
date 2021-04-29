@@ -5,6 +5,13 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     private static InputManager instance;
+    public static InputManager Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
     private Controls controls;
 
     private void Awake()
@@ -19,11 +26,7 @@ public class InputManager : MonoBehaviour
         }
         controls = new Controls();
     }
-
-    public InputManager getInputManager()
-    {
-        return instance;
-    }
+    
     private void OnEnable()
     {
         controls.Enable();
