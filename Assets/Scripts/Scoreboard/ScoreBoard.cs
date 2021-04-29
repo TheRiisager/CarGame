@@ -62,7 +62,7 @@ namespace Scoreboard
             foreach (var s in scores)
             {
                 i++;
-                Console.WriteLine(s.ToFile());
+                Console.WriteLine(s.PrintScore());
 
                 if (i == topX)
                 {
@@ -77,7 +77,7 @@ namespace Scoreboard
             Console.WriteLine();
             foreach (var s in scores)
             {
-                Console.WriteLine(s.ToFile());
+                Console.WriteLine(s.PrintScore());
             }
             Console.WriteLine();
         }
@@ -96,7 +96,7 @@ namespace Scoreboard
             this.time = new TimeSpan(0, 0, 0, seconds, 0);
         }
 
-        public string ToFile()
+        public string PrintScore()
         {
             return name + " " + time;
         }
