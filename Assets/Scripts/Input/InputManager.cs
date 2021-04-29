@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class InputManager : MonoBehaviour
@@ -13,6 +14,9 @@ public class InputManager : MonoBehaviour
         }
     }
     private Controls controls;
+
+    public event Action MenuButtonEvent;
+    public event Action ResetButtonEvent;
 
     private void Awake()
     {
@@ -37,32 +41,38 @@ public class InputManager : MonoBehaviour
         controls.Disable();
     }
 
-    public Vector2 getLook()
+    void Update()
+    {
+        if(GetMenuButton()) MenuButtonEvent?.Invoke();
+        if(GetResetButton()) ResetButtonEvent?.Invoke();
+    }
+
+    public Vector2 GetLook()
     {
         return controls.Car.Look.ReadValue<Vector2>();
     }
 
-    public float getSteering()
+    public float GetSteering()
     {
         return controls.Car.Steering.ReadValue<float>();
     }
 
-    public float getAccelerator()
+    public float GetAccelerator()
     {
         return controls.Car.Accelerator.ReadValue<float>();
     }
 
-    public float getBrake()
+    public float GetBrake()
     {
         return controls.Car.Brake.ReadValue<float>();
     }
 
-    public bool getMenuButton()
+    public bool GetMenuButton()
     {
         return controls.Car.Menu.triggered;
     }
 
-    public bool getResetButton()
+    public bool GetResetButton()
     {
         return controls.Car.Reset.triggered;
     }
