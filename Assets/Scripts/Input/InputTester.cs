@@ -5,22 +5,45 @@ using UnityEngine;
 public class InputTester : MonoBehaviour
 {
     InputManager inputManager;
-    Rigidbody rigidbody;
+    Rigidbody rg;
 
     void Start()
     {
         inputManager = InputManager.Instance;
-        rigidbody = GetComponent<Rigidbody>();
+        rg = GetComponent<Rigidbody>();
+        
     }
 
-    // Update is called once per frame
+    //Use OnEnable to subscribe to events
+    void OnEnable()
+    {
+        //Events are static, so they don't need a reference to an instance of InputManager
+        InputManager.MenuButtonEvent += LogMenu;
+        InputManager.ResetButtonEvent += LogReset;
+    }
+
+    //Make sure to unsubscribe from events on disable.
+    void OnDisable()
+    {
+        InputManager.MenuButtonEvent -= LogMenu;
+        InputManager.ResetButtonEvent -= LogReset;
+    }
+
     void Update()
     {
-        Debug.Log("Look input: " + inputManager.getLook());
+        Debug.Log(inputManager.GetAccelerator());
+        float forceMul = inputManager.GetAccelerator();
+        rg.AddForce(Vector3.up * 100 * forceMul, ForceMode.Force);
 
-        float forceMul = inputManager.getAccelerator();
-        Debug.Log(forceMul);
-        rigidbody.AddForce(Vector3.up * 100 * forceMul, ForceMode.Force);
+    }
 
+    void LogMenu()
+    {
+        Debug.Log("MENU!");
+    }
+
+    void LogReset()
+    {
+        Debug.Log("RESET!");
     }
 }
