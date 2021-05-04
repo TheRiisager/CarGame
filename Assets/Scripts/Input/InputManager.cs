@@ -15,8 +15,9 @@ public class InputManager : MonoBehaviour
     }
     private Controls controls;
 
-    public event Action MenuButtonEvent;
-    public event Action ResetButtonEvent;
+    //Events are static, so they don't need a reference to an instance of InputManager
+    public static event Action MenuButtonEvent;
+    public static event Action ResetButtonEvent;
 
     private void Awake()
     {
