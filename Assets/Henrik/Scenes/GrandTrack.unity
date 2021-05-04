@@ -1409,6 +1409,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3277533385114712796, guid: 067001619d90479cbb93c245b4507f51, type: 3}
+      propertyPath: m_SidewaysFriction.m_Stiffness
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3277533385982774497, guid: 067001619d90479cbb93c245b4507f51, type: 3}
+      propertyPath: m_SidewaysFriction.m_Stiffness
+      value: 1.4
+      objectReference: {fileID: 0}
     - target: {fileID: 3277533386287186314, guid: 067001619d90479cbb93c245b4507f51, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1460,6 +1468,18 @@ PrefabInstance:
     - target: {fileID: 3277533386287186317, guid: 067001619d90479cbb93c245b4507f51, type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3277533386287186327, guid: 067001619d90479cbb93c245b4507f51, type: 3}
+      propertyPath: maxBrakeForce
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3277533386287186327, guid: 067001619d90479cbb93c245b4507f51, type: 3}
+      propertyPath: axleInfos.Array.data[0].motor
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3277533386287186327, guid: 067001619d90479cbb93c245b4507f51, type: 3}
+      propertyPath: axleInfos.Array.data[1].steering
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 067001619d90479cbb93c245b4507f51, type: 3}
