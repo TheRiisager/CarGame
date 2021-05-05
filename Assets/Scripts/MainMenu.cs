@@ -19,7 +19,7 @@ public class MainMenu : MonoBehaviour
     }
     public void button_Start()
     {
-        //SceneManager.LoadScene("GAME-SCENE"); 
+        SceneManager.LoadScene("GrandTrack"); 
     }
 
     public void button_Controls()

@@ -11,5 +11,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Scoreboard.unity
     guid: 1fbd4c0824d54454b8f7e05bd0837259
+  - enabled: 1
+    path: Assets/Scenes/GrandTrack.unity
+    guid: b324ac26b2bf55945a5ecb647176de70
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 78702a3e38a322140be3489d478af87f, type: 2}
