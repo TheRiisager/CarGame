@@ -1,0 +1,5 @@
+BravoGold	1000
+BravoSilver	1500
+BravoBronze	2000
+BravoNewbie	3500
+BravoScrub	5000

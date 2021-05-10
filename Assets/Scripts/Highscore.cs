@@ -14,21 +14,25 @@ namespace Scoreboard
         public Transform row;
         public Transform table;
 
-        //private string file = "Assets/Resources/ScoreFile.txt";
-        private string file = "C:\\Users\\Alex Wagner\\Documents\\4semester\\Unity\\gamedev_handin4\\Assets\\Resources\\ScoreFile.txt";
+        private string _path;
+        public int numberOfRows = 10; //evt kombinér med topX metoden i Scoreboard
+
+        private string SetPath(string _fileName) => _path = Application.dataPath + ("\\Resources\\"+_fileName+".txt");
+
         public ScoreList sl;
 
         private void Start()
         {
-            makeTable();
+            row.gameObject.SetActive(false);
+            Debug.Log(Application.persistentDataPath);
         }
 
-        public void makeTable()
+        public void makeTable(string _trackName)
         {
-            row.gameObject.SetActive(false);
-
-            sl = new ScoreList(file);
-            int numberOfRows = 10; //evt kombinér med topX metoden i Scoreboard
+            
+            clearTable();
+            sl = new ScoreList(SetPath(_trackName));
+            
             float spaceBetweenRows = 50f;
 
             for (int i = 0; i < numberOfRows; i++)
@@ -48,7 +52,39 @@ namespace Scoreboard
 
                 rowTransform.Find("Time").GetComponent<Text>().text = sl.scores[i].time + "";
                 rowTransform.Find("Name").GetComponent<Text>().text = sl.scores[i].name;
+
+                if(sl.scores.Count <=  i+1){break;}
             }
+        }
+
+        public void clearTable()
+        {
+            foreach(Transform row in table.transform)
+            {
+                if(row.gameObject.name.Contains("Clone"))
+                GameObject.Destroy(row.gameObject);
+            }
+
+        }
+
+        public void button_Grand()
+        {
+            makeTable("GrandTrack");
+        }
+
+        public void button_Alpha()
+        {
+            makeTable("AlphaTrack");
+        }
+
+        public void button_Bravo()
+        {
+            makeTable("BravoTrack");
+        }
+
+        public void button_Charlie()
+        {
+            makeTable("CharlieTrack");
         }
 
         public void button_Test()

@@ -1,0 +1,5 @@
+CharlieGold	1000
+CharlieSilver	1500
+CharlieBronze	2000
+CharlieNewbie	3500
+CharlieScrub	5000

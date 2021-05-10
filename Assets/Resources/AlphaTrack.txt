@@ -1,0 +1,10 @@
+AlphaGold	1000
+AlphaSilver	1500
+AlphaBronze	2000
+AlphaNewbie	3500
+AlphaScrub	5000
+AlphaGold	1000
+AlphaSilver	1500
+AlphaBronze	2000
+AlphaNewbie	3500
+AlphaScrub	5000
