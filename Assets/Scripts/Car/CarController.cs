@@ -41,7 +41,6 @@ public class CarController : MonoBehaviour
             axleInfo.leftWheel.brakeTorque = brake;
             axleInfo.rightWheel.brakeTorque = brake;
         }
-        Debug.Log(speed);
     }
 
     private float DecreaseSteeringWithSpeed(float speed)
