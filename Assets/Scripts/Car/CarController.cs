@@ -14,6 +14,7 @@ public class CarController : MonoBehaviour
     void Start()
     {
         inputManager = InputManager.Instance;
+        rigidBody.centerOfMass = new Vector3(0, 0.1f, 0);
     }
 
     void FixedUpdate()
