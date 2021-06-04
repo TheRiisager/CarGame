@@ -146,6 +146,17 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
+                    ""name"": """",
+                    ""id"": ""136f56f1-9fdd-4b28-8fc8-05fed44d037a"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Brake"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
                     ""name"": ""Controller"",
                     ""id"": ""90328458-3d5f-40f9-8c0e-cfb11e884087"",
                     ""path"": ""1DAxis"",
