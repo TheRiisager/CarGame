@@ -28,6 +28,15 @@ public class CarController : MonoBehaviour
     [SerializeField] private float maxMotorTorque;
     [SerializeField] private float maxBrakeForce;
 
+
+    [Header("Traction Control")]
+    [SerializeField] private float TCForceCut = 5;
+    [SerializeField] private float TCSlipThreshold = 0.7f;
+
+    [Header("Antiroll Bar")]
+    [SerializeField] private float ARBStiffness = 5000.0f;
+
+
     [Header("Differential NOT IN USE")]
 
 
@@ -46,27 +55,29 @@ public class CarController : MonoBehaviour
         float motor = maxMotorTorque * inputManager.GetAccelerator();
         float brake = maxBrakeForce * inputManager.GetBrake();
         steering = DecreaseSteeringWithSpeed(speed); //Bugged
-        turnRadius = wheelbase / Mathf.Sin(maxSteeringAngle * inputManager.GetSteering()); // This is currently used for steering!
-        //TODO Decreased steering with speed, introduces a bug when used with ackermannsteering
-        //turnRadius = wheelbase / Mathf.Sin((180 - steering) * inputManager.GetSteering());
+        turnRadius = wheelbase / Mathf.Sin(Mathf.Deg2Rad * steering); // This is currently used for steering!
 
         foreach (AxleInfo axleInfo in axleInfos)
         {
             if (axleInfo.steering)
             {
+
+                //Direct input steering
                 //axleInfo.leftWheel.steerAngle = ackermannLeft = AckermannAngle()[0];
                 //axleInfo.rightWheel.steerAngle = ackermannRight = AckermannAngle()[1];
 
                 //Smooth steering using LERP: 
                 axleInfo.leftWheel.steerAngle = ackermannLeft = Mathf.Lerp(axleInfo.leftWheel.steerAngle, AckermannAngle()[0], Time.deltaTime * turnSpeed);
-                axleInfo.rightWheel.steerAngle = ackermannRight = Mathf.Lerp(axleInfo.leftWheel.steerAngle, AckermannAngle()[1], Time.deltaTime * turnSpeed);
+                axleInfo.rightWheel.steerAngle = ackermannRight = Mathf.Lerp(axleInfo.rightWheel.steerAngle, AckermannAngle()[1], Time.deltaTime * turnSpeed);
             }
 
             if (axleInfo.motor)
             {
-                axleInfo.leftWheel.motorTorque = motor;
-                axleInfo.rightWheel.motorTorque = motor;
+                axleInfo.leftWheel.motorTorque = axleInfo.rightWheel.motorTorque = TractionControl(motor, axleInfo.leftWheel, axleInfo.rightWheel);
+                //print(axleInfo.leftWheel.motorTorque + " | " + axleInfo.rightWheel.motorTorque);
             }
+
+            AntiRollBar(axleInfo.leftWheel, axleInfo.rightWheel); //experimental
 
             axleInfo.leftWheel.brakeTorque = brake;
             axleInfo.rightWheel.brakeTorque = brake;
@@ -74,6 +85,64 @@ public class CarController : MonoBehaviour
         //Debug.Log(speed);
     }
 
+    //Antiroll bar
+    private void AntiRollBar(WheelCollider wheelL, WheelCollider wheelR)
+    {
+        WheelHit wh = new WheelHit();
+
+        //TODO investigate these variables. Are they supposed to be equal suspension distance on wheel colliders? 
+        float travelL = 0.3f;
+        float travelR = 0.3f;
+
+        bool groundedL = wheelL.GetGroundHit(out wh);
+        if (groundedL)
+        {
+            travelL = (wheelL.transform.InverseTransformPoint(wh.point).y - wheelL.radius) / wheelL.suspensionDistance;
+        }
+
+        bool groundedR = wheelR.GetGroundHit(out wh);
+        if (groundedR)
+        {
+            travelR = (wheelR.transform.InverseTransformPoint(wh.point).y - wheelR.radius) / wheelR.suspensionDistance;
+        }
+
+        var antiRollForce = (travelL - travelR) * ARBStiffness;
+
+        if (groundedL)
+        {
+            rigidBody.AddForceAtPosition(wheelL.transform.up * -antiRollForce, wheelL.transform.position);
+        }
+
+        if (groundedR)
+        {
+            rigidBody.AddForceAtPosition(wheelR.transform.up * -antiRollForce, wheelR.transform.position);
+        }
+    }
+
+    //Traction control
+    private float TractionControl(float force, WheelCollider wheelL, WheelCollider wheelR)
+    {
+        WheelHit wh = new WheelHit();
+
+        if (wheelL.GetGroundHit(out wh))
+        {
+            if (wh.forwardSlip > TCSlipThreshold)
+            {
+                force = force / TCForceCut;
+            }
+        }
+
+        if (wheelR.GetGroundHit(out wh))
+        {
+            if (wh.forwardSlip > TCSlipThreshold)
+            {
+                force = force / TCForceCut;
+            }
+        }
+        return force;
+    }
+
+    //Ackermann steering
     private float[] AckermannAngle()
     {
         //Index 0 = Left wheel  |  Index 1 = Right wheel
@@ -85,48 +154,52 @@ public class CarController : MonoBehaviour
         }
         else if (steering < 0)
         {
-            ackermannSteering[0] = Mathf.Rad2Deg * Mathf.Atan(wheelbase / (turnRadius - (rearTrack / 2)));
-            ackermannSteering[1] = Mathf.Rad2Deg * Mathf.Atan(wheelbase / (turnRadius + (rearTrack / 2)));
+            ackermannSteering[1] = Mathf.Rad2Deg * Mathf.Atan(wheelbase / (turnRadius - (rearTrack / 2)));
+            ackermannSteering[0] = Mathf.Rad2Deg * Mathf.Atan(wheelbase / (turnRadius + (rearTrack / 2)));
         }
         return ackermannSteering;
     }
     private float DecreaseSteeringWithSpeed(float speed)
     {
-        return (maxSteeringAngle * inputManager.GetSteering()) / ((speed / 40) + 1);
+        return (maxSteeringAngle * inputManager.GetSteering()) / ((speed / 20) + 1);
     }
 
-    private void SplitTorque(float motorTorque)
-    {
 
-    }
 
-    private float[] DiffOutput(float slipLH, float slipRH, float maxSlip, float torque, float maxTrans)
-    {
-        float[] output = new float[2];
-        float slipDifferential = slipRH - slipLH;
-        float singleWheelBaseTorque = 0.5f * torque;
-        float torqueTransfer = 0.0f;
 
-        if (maxSlip != 0.0f)
+    /*
+        private void SplitTorque(float motorTorque)
         {
-            if (Mathf.Abs(slipDifferential) <= Mathf.Abs(maxSlip))
-            {
-                torqueTransfer = slipDifferential / maxSlip;
-            }
-            else
-            {
-                torqueTransfer = 1.0f * Mathf.Sign(slipDifferential) * Mathf.Sign(maxSlip);
-            }
+
         }
-        if (Mathf.Abs(torqueTransfer) > Mathf.Abs(maxTrans))
+
+        private float[] DiffOutput(float slipLH, float slipRH, float maxSlip, float torque, float maxTrans)
         {
-            torqueTransfer = maxTrans * Mathf.Sign(torqueTransfer);
-        }
-        float torqueAdjustment = singleWheelBaseTorque * torqueTransfer;
-        output[0] = singleWheelBaseTorque - torqueAdjustment;
-        output[1] = singleWheelBaseTorque + torqueAdjustment;
-        return output;
-    }
+            float[] output = new float[2];
+            float slipDifferential = slipRH - slipLH;
+            float singleWheelBaseTorque = 0.5f * torque;
+            float torqueTransfer = 0.0f;
+
+            if (maxSlip != 0.0f)
+            {
+                if (Mathf.Abs(slipDifferential) <= Mathf.Abs(maxSlip))
+                {
+                    torqueTransfer = slipDifferential / maxSlip;
+                }
+                else
+                {
+                    torqueTransfer = 1.0f * Mathf.Sign(slipDifferential) * Mathf.Sign(maxSlip);
+                }
+            }
+            if (Mathf.Abs(torqueTransfer) > Mathf.Abs(maxTrans))
+            {
+                torqueTransfer = maxTrans * Mathf.Sign(torqueTransfer);
+            }
+            float torqueAdjustment = singleWheelBaseTorque * torqueTransfer;
+            output[0] = singleWheelBaseTorque - torqueAdjustment;
+            output[1] = singleWheelBaseTorque + torqueAdjustment;
+            return output;
+        }*/
 
 }
 
