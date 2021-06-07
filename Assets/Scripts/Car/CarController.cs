@@ -162,7 +162,7 @@ public class CarController : MonoBehaviour
     }
     private float DecreaseSteeringWithSpeed(float speed)
     {
-        return (maxSteeringAngle * inputManager.GetSteering()) / ((speed / 20) + 1);
+        return (maxSteeringAngle * inputManager.GetSteering()) / ((speed / 30) + 1);
     }
 
 
