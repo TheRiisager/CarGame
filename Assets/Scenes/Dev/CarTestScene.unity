@@ -423,6 +423,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCar
       objectReference: {fileID: 0}
+    - target: {fileID: 1612591396423599665, guid: f2e093f3143948946970815c4e5b8b67, type: 3}
+      propertyPath: m_Drag
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 1612591396423599666, guid: f2e093f3143948946970815c4e5b8b67, type: 3}
       propertyPath: rearLeft
       value: 
@@ -442,6 +446,10 @@ PrefabInstance:
     - target: {fileID: 1612591396423599666, guid: f2e093f3143948946970815c4e5b8b67, type: 3}
       propertyPath: wheelbase
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1612591396423599666, guid: f2e093f3143948946970815c4e5b8b67, type: 3}
+      propertyPath: TCForceCut
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1612591396423599666, guid: f2e093f3143948946970815c4e5b8b67, type: 3}
       propertyPath: frontRight
