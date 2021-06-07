@@ -46,7 +46,7 @@ public class CarController : MonoBehaviour
         float motor = maxMotorTorque * inputManager.GetAccelerator();
         float brake = maxBrakeForce * inputManager.GetBrake();
         steering = DecreaseSteeringWithSpeed(speed); //Bugged
-        turnRadius = wheelbase / Mathf.Sin(maxSteeringAngle * inputManager.GetSteering()); // This is currently used for steering!
+        turnRadius = wheelbase / Mathf.Sin(maxSteeringAngle * -inputManager.GetSteering()); // This is currently used for steering!
         //TODO Decreased steering with speed, introduces a bug when used with ackermannsteering
         //turnRadius = wheelbase / Mathf.Sin((180 - steering) * inputManager.GetSteering());
 
