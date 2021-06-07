@@ -17,14 +17,16 @@ namespace Scoreboard
         private string _path;
         public int numberOfRows = 10; //evt kombinér med topX metoden i Scoreboard
 
-        private string SetPath(string _fileName) => _path = Application.dataPath + ("\\Resources\\"+_fileName+".txt");
+        private string SetPath(string _fileName) => _path = Application.dataPath + ("/Resources/"+_fileName+".txt");
 
         public ScoreList sl;
+        Menumanager menuManager;
 
         private void Start()
         {
             row.gameObject.SetActive(false);
             Debug.Log(Application.persistentDataPath);
+            menuManager = GameObject.FindGameObjectWithTag("MenuManager").GetComponent<Menumanager>();
         }
 
         public void makeTable(string _trackName)
@@ -103,7 +105,7 @@ namespace Scoreboard
 
         public void button_Back()
         {
-            SceneManager.LoadScene("MainMenu");
+            menuManager.LoadNewMenu("MainMenu");
         }
 
     }
