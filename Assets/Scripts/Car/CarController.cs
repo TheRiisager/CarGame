@@ -44,7 +44,7 @@ public class CarController : MonoBehaviour
     void Start()
     {
         inputManager = InputManager.Instance;
-        rigidBody.centerOfMass = new Vector3(0, 0.1f, 0); //Overwriting the center of mass, for better handling.
+        rigidBody.centerOfMass = new Vector3(0, 0.2f, 0); //Overwriting the center of mass, for better handling.
         wheelbase = Vector3.Distance(frontLeft.transform.position, rearLeft.transform.position);
         rearTrack = Vector3.Distance(rearRight.transform.position, rearLeft.transform.position);
     }
@@ -91,8 +91,9 @@ public class CarController : MonoBehaviour
         WheelHit wh = new WheelHit();
 
         //TODO investigate these variables. Are they supposed to be equal suspension distance on wheel colliders? 
-        float travelL = 0.3f;
-        float travelR = 0.3f;
+        //reference: https://forum.unity.com/threads/how-to-make-a-physically-real-stable-car-with-wheelcolliders.50643/
+        float travelL = wheelL.suspensionDistance;
+        float travelR = wheelR.suspensionDistance;
 
         bool groundedL = wheelL.GetGroundHit(out wh);
         if (groundedL)
@@ -110,7 +111,7 @@ public class CarController : MonoBehaviour
 
         if (groundedL)
         {
-            rigidBody.AddForceAtPosition(wheelL.transform.up * -antiRollForce, wheelL.transform.position);
+            rigidBody.AddForceAtPosition(wheelL.transform.up * antiRollForce, wheelL.transform.position);
         }
 
         if (groundedR)

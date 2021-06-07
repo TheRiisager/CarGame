@@ -126,7 +126,7 @@ Transform:
   m_Children:
   - {fileID: 1946598731191920170}
   m_Father: {fileID: 8373845453033319022}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!146 &1387357587366606412
 WheelCollider:
@@ -188,7 +188,7 @@ Transform:
   m_Children:
   - {fileID: 1492423057755256245}
   m_Father: {fileID: 8373845453033319022}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!146 &1387357587919422590
 WheelCollider:
@@ -251,7 +251,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8373845453033319022}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &1387357587984636856
 Camera:
@@ -366,7 +366,7 @@ Transform:
   m_Children:
   - {fileID: 415628382505979478}
   m_Father: {fileID: 8373845453033319022}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!146 &1387357588470608091
 WheelCollider:
@@ -428,7 +428,7 @@ Transform:
   m_Children:
   - {fileID: 8085025112072517119}
   m_Father: {fileID: 8373845453033319022}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!146 &1387357588844051033
 WheelCollider:
@@ -619,11 +619,11 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1387357587984636859}
   - {fileID: 1387357588470608092}
   - {fileID: 1387357587366606413}
   - {fileID: 1387357587919422591}
   - {fileID: 1387357588844051034}
-  - {fileID: 1387357587984636859}
   m_Father: {fileID: 2560774961839078879}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -715,10 +715,23 @@ MonoBehaviour:
     motor: 1
     steering: 0
   rigidBody: {fileID: 1612591396423599665}
-  maxMotorTorque: 2000
   maxSteeringAngle: 35
   turnSpeed: 10
+  steering: 0
+  ackermannLeft: 0
+  ackermannRight: 0
+  frontLeft: {fileID: 0}
+  frontRight: {fileID: 0}
+  rearLeft: {fileID: 0}
+  rearRight: {fileID: 0}
+  wheelbase: 0
+  rearTrack: 0
+  turnRadius: 0
+  maxMotorTorque: 2000
   maxBrakeForce: 1000
+  TCForceCut: 5
+  TCSlipThreshold: 0.7
+  ARBStiffness: 5000
 --- !u!65 &1612591396423599667
 BoxCollider:
   m_ObjectHideFlags: 0
