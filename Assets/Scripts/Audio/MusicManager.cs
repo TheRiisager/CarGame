@@ -52,6 +52,8 @@ public class MusicManager : MonoBehaviour
         {
             source.Pause();
         }
+
+        Debug.Log(source.time);
     }
 
     public void SetMusic(bool music)
