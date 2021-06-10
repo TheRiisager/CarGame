@@ -23,7 +23,7 @@ public class MainMenu : MonoBehaviour
     }
     public void button_Start()
     {
-        SceneManager.LoadScene("GrandTrack"); 
+        menuManager.LoadNewMenu("LevelSelect");
     }
 
     public void button_Controls()
