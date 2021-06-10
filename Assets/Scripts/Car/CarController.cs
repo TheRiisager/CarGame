@@ -10,6 +10,10 @@ public class CarController : MonoBehaviour
     [Header("Steering")]
     [SerializeField] private float maxSteeringAngle;
     [SerializeField] private float turnSpeed;
+    [SerializeField] private float steeringStartModifier = 30;
+
+
+    [Header("Steering output")]
     [SerializeField] private float steering;
     [SerializeField] private float ackermannLeft;
     [SerializeField] private float ackermannRight;
@@ -81,6 +85,10 @@ public class CarController : MonoBehaviour
 
             axleInfo.leftWheel.brakeTorque = brake;
             axleInfo.rightWheel.brakeTorque = brake;
+
+            /*if (brake > 0 && speed > 0)
+            {
+            }*/
         }
         //Debug.Log(speed);
     }
@@ -162,7 +170,7 @@ public class CarController : MonoBehaviour
     }
     private float DecreaseSteeringWithSpeed(float speed)
     {
-        return (maxSteeringAngle * inputManager.GetSteering()) / ((speed / 30) + 1);
+        return (maxSteeringAngle * inputManager.GetSteering()) / ((speed / steeringStartModifier) + 1);
     }
 
 
