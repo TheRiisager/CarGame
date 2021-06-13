@@ -265,8 +265,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noiseDepth: 10
   noiseScale: 25
-  noisePosX: 0
-  noisePosY: 0
+  noisePosX: 25
+  noisePosY: 25
 --- !u!154 &1323710500
 TerrainCollider:
   m_ObjectHideFlags: 0
