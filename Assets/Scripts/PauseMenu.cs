@@ -29,7 +29,7 @@ public class PauseMenu : MonoBehaviour
 
     public void ResetTrack()
     {
-
+        menumanager.LoadNewMenu(menumanager.currentScene.name);
     }
 
     private void HandleMenuEvent()
