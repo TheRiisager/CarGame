@@ -344,7 +344,7 @@ MonoBehaviour:
   object4: {fileID: 100000, guid: 0a1cade8f3785a5498483caf954be128, type: 3}
   object5: {fileID: 100000, guid: 8988c881874f4cb4db33f58b6a8e7416, type: 3}
   object6: {fileID: 100000, guid: e08d894d1a4dca746a9673007d5c706d, type: 3}
-  AmountOfObjects: 0
+  AmountOfObjects: 50
 --- !u!1 &1469811327
 GameObject:
   m_ObjectHideFlags: 0
