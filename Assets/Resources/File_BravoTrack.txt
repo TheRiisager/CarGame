@@ -1,0 +1,9 @@
+BravoGold	1000
+BravoSilver	1500
+BravoBronze	2000
+BravoNewbie	3500
+BravoScrub	5000
+Player 112070
+Player 139760
+Player 90140
+Player 98900

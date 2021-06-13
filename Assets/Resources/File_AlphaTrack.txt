@@ -1,0 +1,11 @@
+AlphaGold	30521
+AlphaSilver	32231
+AlphaBronze	32512
+AlphaNewbie	33515
+AlphaScrub	35623
+AlphaGold	37123
+AlphaSilver	39942
+AlphaBronze	40115
+AlphaNewbie	65157
+AlphaScrub	129514
+Player 77090

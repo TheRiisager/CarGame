@@ -601,6 +601,7 @@ GameObject:
   - component: {fileID: 1612591396423599665}
   - component: {fileID: 1612591396423599666}
   - component: {fileID: 1612591396423599667}
+  - component: {fileID: 2119538183399936935}
   m_Layer: 0
   m_Name: body
   m_TagString: Untagged
@@ -715,9 +716,19 @@ MonoBehaviour:
     motor: 1
     steering: 0
   rigidBody: {fileID: 1612591396423599665}
-  maxMotorTorque: 2000
   maxSteeringAngle: 35
   turnSpeed: 10
+  steering: 0
+  ackermannLeft: 0
+  ackermannRight: 0
+  frontLeft: {fileID: 0}
+  frontRight: {fileID: 0}
+  rearLeft: {fileID: 0}
+  rearRight: {fileID: 0}
+  wheelbase: 0
+  rearTrack: 0
+  turnRadius: 0
+  maxMotorTorque: 2000
   maxBrakeForce: 1000
 --- !u!65 &1612591396423599667
 BoxCollider:
@@ -732,6 +743,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.968087, y: 1.0801516, z: 3.9610438}
   m_Center: {x: 0.000000059604645, y: 0.7612841, z: -0.11061287}
+--- !u!114 &2119538183399936935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612591396423599668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e69f335dc8fa147bc51f94a2844058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7655224147749611016
 GameObject:
   m_ObjectHideFlags: 0
