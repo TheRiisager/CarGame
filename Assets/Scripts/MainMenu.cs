@@ -11,15 +11,19 @@ public class MainMenu : MonoBehaviour
     public Sprite onSprite, offSprite;
    // public SpriteRenderer musicRender, soundRender;
     public Button button_sound, button_music;
+    private Menumanager menuManager;
+    private MusicManager musicManager;
 
     private void Start()
     {
         sound = true;
         music = true;
+        menuManager = GameObject.FindGameObjectWithTag("MenuManager").GetComponent<Menumanager>();
+        musicManager = GameObject.FindGameObjectWithTag("MusicManager").GetComponent<MusicManager>();
     }
     public void button_Start()
     {
-        SceneManager.LoadScene("GrandTrack"); 
+        menuManager.LoadNewMenu("LevelSelect");
     }
 
     public void button_Controls()
@@ -32,11 +36,13 @@ public class MainMenu : MonoBehaviour
         if (music)
         {
             music = false;
+            musicManager.SetMusic(false);
             button_music.image.sprite = offSprite;
         }
         else
         {
             music = true;
+            musicManager.SetMusic(true);
             button_music.image.sprite = onSprite;
         }
     }
@@ -57,7 +63,7 @@ public class MainMenu : MonoBehaviour
 
     public void button_Highscore()
     {
-        SceneManager.LoadScene("Scoreboard");
+        menuManager.LoadNewMenu("Scoreboard");
     }
 
     public void button_Exit()

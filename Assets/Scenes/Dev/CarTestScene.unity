@@ -419,6 +419,14 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.0004046596
       objectReference: {fileID: 0}
+    - target: {fileID: 1387357588470608091, guid: f2e093f3143948946970815c4e5b8b67, type: 3}
+      propertyPath: m_SidewaysFriction.m_Stiffness
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387357588844051033, guid: f2e093f3143948946970815c4e5b8b67, type: 3}
+      propertyPath: m_SidewaysFriction.m_Stiffness
+      value: 1.3
+      objectReference: {fileID: 0}
     - target: {fileID: 1572577168959410124, guid: f2e093f3143948946970815c4e5b8b67, type: 3}
       propertyPath: m_Name
       value: PlayerCar
@@ -461,7 +469,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1612591396423599666, guid: f2e093f3143948946970815c4e5b8b67, type: 3}
       propertyPath: maxMotorTorque
-      value: 2000
+      value: 3000
       objectReference: {fileID: 0}
     - target: {fileID: 1612591396423599666, guid: f2e093f3143948946970815c4e5b8b67, type: 3}
       propertyPath: maxSteeringAngle

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - SlowCam
   - FastCam
+  - MenuManager
+  - MusicManager
   layers:
   - Default
   - TransparentFX

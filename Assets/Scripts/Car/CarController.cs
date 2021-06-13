@@ -29,6 +29,8 @@ public class CarController : MonoBehaviour
 
 
     [Header("Motor")]
+    [SerializeField] private float speed;
+    [SerializeField] private float relativeSpeed;
     [SerializeField] private float maxMotorTorque;
     [SerializeField] private float maxBrakeForce;
 
@@ -55,12 +57,13 @@ public class CarController : MonoBehaviour
 
     void FixedUpdate()
     {
-        float speed = rigidBody.velocity.magnitude * 3.6f;
+        speed = rigidBody.velocity.magnitude * 3.6f;
+        relativeSpeed = transform.InverseTransformDirection(rigidBody.velocity).z * 3.6f;
         float motor = maxMotorTorque * inputManager.GetAccelerator();
         float brake = maxBrakeForce * inputManager.GetBrake();
+        print(brake);
         steering = DecreaseSteeringWithSpeed(speed); //Bugged
         turnRadius = wheelbase / Mathf.Sin(Mathf.Deg2Rad * steering); // This is currently used for steering!
-
         foreach (AxleInfo axleInfo in axleInfos)
         {
             if (axleInfo.steering)
@@ -78,19 +81,43 @@ public class CarController : MonoBehaviour
             if (axleInfo.motor)
             {
                 axleInfo.leftWheel.motorTorque = axleInfo.rightWheel.motorTorque = TractionControl(motor, axleInfo.leftWheel, axleInfo.rightWheel);
-                //print(axleInfo.leftWheel.motorTorque + " | " + axleInfo.rightWheel.motorTorque);
+                //AutoThrottleDirection(motor, axleInfo.leftWheel, axleInfo.rightWheel);
+
             }
 
             AntiRollBar(axleInfo.leftWheel, axleInfo.rightWheel); //experimental
 
-            axleInfo.leftWheel.brakeTorque = brake;
-            axleInfo.rightWheel.brakeTorque = brake;
 
-            /*if (brake > 0 && speed > 0)
+            if (brake > 0)
             {
-            }*/
+                if (relativeSpeed > 1)
+                {
+                    axleInfo.leftWheel.brakeTorque = brake;
+                    axleInfo.rightWheel.brakeTorque = brake;
+                }
+                if (relativeSpeed < 1)
+                {
+                    axleInfo.leftWheel.motorTorque = -brake;
+                    axleInfo.rightWheel.motorTorque = -brake;
+                }
+
+            }
         }
         //Debug.Log(speed);
+    }
+
+    //Throttle direction
+    private float AutoThrottleDirection(float force)
+    {
+        float direction = 1;
+
+
+
+        if (relativeSpeed < 1)
+        {
+            direction = direction * -1;
+        }
+        return direction * force;
     }
 
     //Antiroll bar
@@ -132,10 +159,13 @@ public class CarController : MonoBehaviour
     private float TractionControl(float force, WheelCollider wheelL, WheelCollider wheelR)
     {
         WheelHit wh = new WheelHit();
+        float finalTCSlipThreshold = TCSlipThreshold * ((speed / 350) + 1);
+        //print("Threshold: " + finalTCSlipThreshold);
 
         if (wheelL.GetGroundHit(out wh))
         {
-            if (wh.forwardSlip > TCSlipThreshold)
+            //print("L slip: " + wh.forwardSlip);
+            if (wh.forwardSlip > finalTCSlipThreshold)
             {
                 force = force / TCForceCut;
             }
@@ -143,11 +173,13 @@ public class CarController : MonoBehaviour
 
         if (wheelR.GetGroundHit(out wh))
         {
-            if (wh.forwardSlip > TCSlipThreshold)
+            //print("R slip: " + wh.forwardSlip);
+            if (wh.forwardSlip > finalTCSlipThreshold)
             {
                 force = force / TCForceCut;
             }
         }
+        //print("Force: " + force);
         return force;
     }
 

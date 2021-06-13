@@ -1,0 +1,11 @@
+BravoGold    35412
+BravoSilver    42147
+BravoBronze    45781
+BravoBot    47588
+BravoBot    57648
+BravoBot    62149
+BravoBot    65871
+BravoBot    78125
+BravoBot    89151
+BravoBot    98474
+

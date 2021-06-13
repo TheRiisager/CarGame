@@ -1,0 +1,10 @@
+AlphaGold    25412
+AlphaSilver    32147
+AlphaBronze    35781
+AlphaBot    37588
+AlphaBot    47648
+AlphaBot    52149
+AlphaBot    65871
+AlphaBot    78125
+AlphaBot    89151
+AlphaBot    98474

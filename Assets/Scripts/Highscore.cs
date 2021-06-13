@@ -17,14 +17,16 @@ namespace Scoreboard
         private string _path;
         public int numberOfRows = 10; //evt kombinér med topX metoden i Scoreboard
 
-        private string SetPath(string _fileName) => _path = Application.dataPath + ("\\Resources\\"+_fileName+".txt");
+        private string SetPath(string _fileName) => _path = Application.dataPath + ("/Resources/"+_fileName+".txt");
 
         public ScoreList sl;
+        Menumanager menuManager;
 
         private void Start()
         {
             row.gameObject.SetActive(false);
             Debug.Log(Application.persistentDataPath);
+            menuManager = GameObject.FindGameObjectWithTag("MenuManager").GetComponent<Menumanager>();
         }
 
         public void makeTable(string _trackName)
@@ -50,7 +52,7 @@ namespace Scoreboard
                 else
                 { rowTransform.Find("Rank").GetComponent<Text>().text = (i + 1) + "th"; }
 
-                rowTransform.Find("Time").GetComponent<Text>().text = sl.scores[i].time + "";
+                rowTransform.Find("Time").GetComponent<Text>().text = sl.scores[i].time.Minutes + ":" + sl.scores[i].time.Seconds.ToString("00") + ":" + sl.scores[i].time.Milliseconds +"";
                 rowTransform.Find("Name").GetComponent<Text>().text = sl.scores[i].name;
 
                 if(sl.scores.Count <=  i+1){break;}
@@ -74,12 +76,12 @@ namespace Scoreboard
 
         public void button_Alpha()
         {
-            makeTable("AlphaTrack");
+            makeTable("File_AlphaTrack");
         }
 
         public void button_Bravo()
         {
-            makeTable("BravoTrack");
+            makeTable("File_BravoTrack");
         }
 
         public void button_Charlie()
@@ -103,7 +105,7 @@ namespace Scoreboard
 
         public void button_Back()
         {
-            SceneManager.LoadScene("MainMenu");
+            menuManager.LoadNewMenu("MainMenu");
         }
 
     }
