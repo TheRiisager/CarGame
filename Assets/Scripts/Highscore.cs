@@ -52,7 +52,7 @@ namespace Scoreboard
                 else
                 { rowTransform.Find("Rank").GetComponent<Text>().text = (i + 1) + "th"; }
 
-                rowTransform.Find("Time").GetComponent<Text>().text = sl.scores[i].time + "";
+                rowTransform.Find("Time").GetComponent<Text>().text = sl.scores[i].time.Minutes + ":" + sl.scores[i].time.Seconds.ToString("00") + ":" + sl.scores[i].time.Milliseconds +"";
                 rowTransform.Find("Name").GetComponent<Text>().text = sl.scores[i].name;
 
                 if(sl.scores.Count <=  i+1){break;}
@@ -76,12 +76,12 @@ namespace Scoreboard
 
         public void button_Alpha()
         {
-            makeTable("AlphaTrack");
+            makeTable("File_AlphaTrack");
         }
 
         public void button_Bravo()
         {
-            makeTable("BravoTrack");
+            makeTable("File_BravoTrack");
         }
 
         public void button_Charlie()

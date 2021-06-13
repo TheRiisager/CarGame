@@ -39,7 +39,7 @@ namespace Scoreboard
             List<string> lines = new List<string>();
             foreach (var s in scores)
             {
-                lines.Add(s.name + " " + s.seconds);
+                lines.Add(s.name + " " + s.ms);
             }
 
             File.WriteAllLines(file, lines);
@@ -97,12 +97,12 @@ namespace Scoreboard
     {
         public string name;
         public TimeSpan time;
-        public int seconds;
-        public Score(string name, int seconds)
+        public int ms;
+        public Score(string name, int ms)
         {
             this.name = name;
-            this.seconds = seconds;
-            this.time = new TimeSpan(0, 0, 0, seconds, 0);
+            this.ms = ms;
+            this.time = new TimeSpan(0, 0, 0, 0, ms);
         }
 
         public string PrintScore()
