@@ -1,11 +1,11 @@
-BravoGold	1000
-BravoSilver	1500
-BravoBronze	2000
-BravoNewbie	3500
-BravoScrub	5000
-Player 112070
-Player 139760
-Player 90140
-Player 98900
-Player 265120
-Player 270750
+BravoGold    35412
+BravoSilver    42147
+BravoBronze    45781
+BravoBot    47588
+BravoBot    57648
+BravoBot    62149
+BravoBot    65871
+BravoBot    78125
+BravoBot    89151
+BravoBot    98474
+
