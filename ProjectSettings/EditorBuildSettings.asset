@@ -15,12 +15,12 @@ EditorBuildSettings:
     path: Assets/Scenes/LevelSelect.unity
     guid: 14db4ed7266f27d01a46f1d0337df67b
   - enabled: 1
-    path: Assets/Scenes/Track_Alpha.unity
+    path: Assets/Scenes/Track_AlphaTrack.unity
     guid: baade7ba67483cf4397168774617ab90
   - enabled: 1
-    path: Assets/Scenes/Track_Bravo.unity
+    path: Assets/Scenes/Track_BravoTrack.unity
     guid: 6a0d93f4b50fd5e4bbd5c473c94a41fd
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Track_GrandTrack.unity
     guid: b324ac26b2bf55945a5ecb647176de70
   m_configObjects:

@@ -13,12 +13,12 @@ public class LevelSelect : MonoBehaviour
 
     public void LoadAlpha()
     {
-        menuManager.LoadNewMenu("Track_Alpha");
+        menuManager.LoadNewMenu("Track_AlphaTrack");
     }
 
     public void LoadBravo()
     {
-        menuManager.LoadNewMenu("Track_Bravo");
+        menuManager.LoadNewMenu("Track_BravoTrack");
     }
 
     public void Back()

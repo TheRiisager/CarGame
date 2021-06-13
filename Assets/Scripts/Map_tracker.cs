@@ -27,7 +27,7 @@ public class Map_tracker : MonoBehaviour
 
         readyToEnd = false;
         p_name = "Player";
-        file = Application.dataPath + ("/Resources/"+file_reference+".txt");
+        file = Application.dataPath + ("/Resources/" + file_reference + ".txt");
 
         Set_cp_numberTotal();
         Reset_cp_numberCurrent();
@@ -65,13 +65,13 @@ public class Map_tracker : MonoBehaviour
         if (c.gameObject.name.Equals("Checkpoint 0") && readyToEnd)
         {
             Debug.Log("Finale time pre int: " + (Time.time - t_start));
-            t_final = Mathf.RoundToInt((Time.time-t_start)*1000);
+            t_final = Mathf.RoundToInt((Time.time - t_start) * 1000);
             Debug.Log("Finale time post int: " + t_final);
-            string line = p_name + " " + t_final+"\n";
+            string line = p_name + " " + t_final + "\n";
             Debug.Log(line);
             Debug.Log(file);
             File.AppendAllText(file, line);
-            
+
         }
     }
     void OnTriggerExit(Collider c)
@@ -79,13 +79,13 @@ public class Map_tracker : MonoBehaviour
         if (cp_numberCurrent == cp_numberTotal && c.gameObject.name.Equals("Checkpoint 0"))
         {
             Reset_cp_numberCurrent();
-
-
         }
 
         if (c.gameObject.name.Equals("Checkpoint " + (cp_numberCurrent + 1)))
         {
+            Debug.Log(cp_numberCurrent);
             Advance_cp_numberCurrent();
+            Debug.Log(cp_numberCurrent);
         }
 
         if (cp_numberCurrent == cp_numberTotal)
