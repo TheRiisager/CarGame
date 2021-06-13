@@ -52,8 +52,6 @@ public class MusicManager : MonoBehaviour
         {
             source.Pause();
         }
-
-        Debug.Log(source.time);
     }
 
     public void SetMusic(bool music)
@@ -67,6 +65,10 @@ public class MusicManager : MonoBehaviour
         if(splitString[0] == "Track")
         {
             currentMusic = gameMusic;
+            musicIndex = 0;
+            source.clip = currentMusic[musicIndex];
+        } else {
+            currentMusic = menuMusic;
             musicIndex = 0;
             source.clip = currentMusic[musicIndex];
         }

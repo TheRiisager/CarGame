@@ -9,3 +9,6 @@ AlphaBronze	40115
 AlphaNewbie	65157
 AlphaScrub	129514
 Player 77090
+Player 79670
+Player 95230
+Player 97630

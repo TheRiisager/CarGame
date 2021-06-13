@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2969,7 +2969,8 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 785262170970888423, guid: e3b623252845bbf45a8713c9c4558214, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e3b623252845bbf45a8713c9c4558214, type: 3}
 --- !u!4 &1016241776 stripped
 Transform:
@@ -3166,6 +3167,22 @@ PrefabInstance:
       propertyPath: file_reference
       value: File_AlphaTrack
       objectReference: {fileID: 0}
+    - target: {fileID: 6863762578348811789, guid: ed7908aaca40706478b75c47cedf39a4, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6863762578348811789, guid: ed7908aaca40706478b75c47cedf39a4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6863762578383979703, guid: ed7908aaca40706478b75c47cedf39a4, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6863762578383979703, guid: ed7908aaca40706478b75c47cedf39a4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6863762578557506314, guid: ed7908aaca40706478b75c47cedf39a4, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -3214,13 +3231,61 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCar
       objectReference: {fileID: 0}
+    - target: {fileID: 6863762578890546087, guid: ed7908aaca40706478b75c47cedf39a4, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6863762578890546087, guid: ed7908aaca40706478b75c47cedf39a4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6863762578900325789, guid: ed7908aaca40706478b75c47cedf39a4, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6863762578900325789, guid: ed7908aaca40706478b75c47cedf39a4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6863762578989686204, guid: ed7908aaca40706478b75c47cedf39a4, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6863762578989686204, guid: ed7908aaca40706478b75c47cedf39a4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6863762579235172076, guid: ed7908aaca40706478b75c47cedf39a4, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6863762579235172076, guid: ed7908aaca40706478b75c47cedf39a4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6863762579645563278, guid: ed7908aaca40706478b75c47cedf39a4, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6863762579645563278, guid: ed7908aaca40706478b75c47cedf39a4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6863762579901503955, guid: ed7908aaca40706478b75c47cedf39a4, type: 3}
       propertyPath: verticalCameraSpeed
-      value: 20
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 6863762579901503955, guid: ed7908aaca40706478b75c47cedf39a4, type: 3}
       propertyPath: horizontalCameraSpeed
-      value: 20
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 6863762580375844526, guid: ed7908aaca40706478b75c47cedf39a4, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6863762580375844526, guid: ed7908aaca40706478b75c47cedf39a4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed7908aaca40706478b75c47cedf39a4, type: 3}

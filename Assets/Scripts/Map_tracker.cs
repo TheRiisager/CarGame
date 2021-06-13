@@ -18,6 +18,8 @@ public class Map_tracker : MonoBehaviour
 
     private int cp_numberTotal, cp_numberCurrent;
 
+    private Menumanager menuManager;
+
     void Start()
     {
         cp = GameObject.Find("Checkpoints");
@@ -32,6 +34,8 @@ public class Map_tracker : MonoBehaviour
         Set_cp_numberTotal();
         Reset_cp_numberCurrent();
         Set_cp_child();
+
+        menuManager = GameObject.FindGameObjectWithTag("MenuManager").GetComponent<Menumanager>();
     }
 
     void OnEnable()
@@ -72,6 +76,7 @@ public class Map_tracker : MonoBehaviour
             Debug.Log(file);
             File.AppendAllText(file, line);
 
+            menuManager.LoadNewMenu("MainMenu");
         }
     }
     void OnTriggerExit(Collider c)
