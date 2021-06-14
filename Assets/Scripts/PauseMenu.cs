@@ -7,9 +7,9 @@ public class PauseMenu : MonoBehaviour
     public static bool isPaused;
     Menumanager menumanager;
     [SerializeField] GameObject pauseMenuObject;
-    void start()
+    void Start()
     {
-        GameObject.FindGameObjectWithTag("MenuManager").GetComponent<Menumanager>();
+        menumanager = GameObject.FindGameObjectWithTag("MenuManager").GetComponent<Menumanager>();
     }
 
     void OnEnable()
@@ -24,20 +24,24 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMainMenu()
     {
+        Resume();
         menumanager.LoadNewMenu("MainMenu");
     }
 
     public void ResetTrack()
     {
-        menumanager.LoadNewMenu(menumanager.currentScene.name);
+        Resume();
+        print("reset arg: " + menumanager.currentScene);
+        menumanager.LoadNewMenu(menumanager.currentScene);
     }
 
     private void HandleMenuEvent()
     {
-        if(isPaused)
+        if (isPaused)
         {
             Resume();
-        } else
+        }
+        else
         {
             Pause();
         }

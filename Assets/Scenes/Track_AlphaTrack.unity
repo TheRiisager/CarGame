@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3254,6 +3254,26 @@ PrefabInstance:
     - target: {fileID: 6863762578989686204, guid: ed7908aaca40706478b75c47cedf39a4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6863762579038508346, guid: ed7908aaca40706478b75c47cedf39a4, type: 3}
+      propertyPath: maxBrakeForce
+      value: 750
+      objectReference: {fileID: 0}
+    - target: {fileID: 6863762579038508346, guid: ed7908aaca40706478b75c47cedf39a4, type: 3}
+      propertyPath: TCSlipThreshold
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6863762579038508346, guid: ed7908aaca40706478b75c47cedf39a4, type: 3}
+      propertyPath: steeringStartModifier
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6863762579038508346, guid: ed7908aaca40706478b75c47cedf39a4, type: 3}
+      propertyPath: axleInfos.Array.data[0].axleType
+      value: front
+      objectReference: {fileID: 0}
+    - target: {fileID: 6863762579038508346, guid: ed7908aaca40706478b75c47cedf39a4, type: 3}
+      propertyPath: axleInfos.Array.data[1].axleType
+      value: rear
       objectReference: {fileID: 0}
     - target: {fileID: 6863762579235172076, guid: ed7908aaca40706478b75c47cedf39a4, type: 3}
       propertyPath: m_Materials.Array.size

@@ -6,26 +6,26 @@ using UnityEngine.SceneManagement;
 
 public class Menumanager : MonoBehaviour
 {
-    public Scene currentScene;
+    public string currentScene;
 
     public static event Action<string> sceneChange;
     void Start()
     {
         SceneManager.LoadScene("MainMenu", LoadSceneMode.Additive);
-        currentScene = SceneManager.GetSceneByName("MainMenu");
+        currentScene = "MainMenu";
     }
 
     public void LoadNewMenu(string menuScene)
     {
-        SceneManager.UnloadSceneAsync(currentScene.name);
-        SceneManager.LoadSceneAsync(menuScene, LoadSceneMode.Additive);
-        currentScene = SceneManager.GetSceneByName(menuScene);
+        SceneManager.UnloadSceneAsync(currentScene);
+        SceneManager.LoadScene(menuScene, LoadSceneMode.Additive);
+        currentScene = menuScene;
         sceneChange?.Invoke(menuScene);
     }
 
     void Update()
     {
-        
+        //print(currentScene.name);
     }
 
 

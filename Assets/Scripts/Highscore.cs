@@ -17,7 +17,7 @@ namespace Scoreboard
         private string _path;
         public int numberOfRows = 10; //evt kombinér med topX metoden i Scoreboard
 
-        private string SetPath(string _fileName) => _path = Application.dataPath + ("/Resources/"+_fileName+".txt");
+        private string SetPath(string _fileName) => _path = Application.dataPath + ("/Resources/" + _fileName + ".txt");
 
         public ScoreList sl;
         Menumanager menuManager;
@@ -31,10 +31,10 @@ namespace Scoreboard
 
         public void makeTable(string _trackName)
         {
-            
+
             clearTable();
             sl = new ScoreList(SetPath(_trackName));
-            
+
             float spaceBetweenRows = 50f;
 
             for (int i = 0; i < numberOfRows; i++)
@@ -52,19 +52,19 @@ namespace Scoreboard
                 else
                 { rowTransform.Find("Rank").GetComponent<Text>().text = (i + 1) + "th"; }
 
-                rowTransform.Find("Time").GetComponent<Text>().text = sl.scores[i].time.Minutes + ":" + sl.scores[i].time.Seconds.ToString("00") + ":" + sl.scores[i].time.Milliseconds +"";
+                rowTransform.Find("Time").GetComponent<Text>().text = sl.scores[i].time.Minutes + ":" + sl.scores[i].time.Seconds.ToString("00") + ":" + sl.scores[i].time.Milliseconds.ToString("000") + "";
                 rowTransform.Find("Name").GetComponent<Text>().text = sl.scores[i].name;
 
-                if(sl.scores.Count <=  i+1){break;}
+                if (sl.scores.Count <= i + 1) { break; }
             }
         }
 
         public void clearTable()
         {
-            foreach(Transform row in table.transform)
+            foreach (Transform row in table.transform)
             {
-                if(row.gameObject.name.Contains("Clone"))
-                GameObject.Destroy(row.gameObject);
+                if (row.gameObject.name.Contains("Clone"))
+                    GameObject.Destroy(row.gameObject);
             }
 
         }

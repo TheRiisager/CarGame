@@ -156,7 +156,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.9
-    m_Stiffness: 1.3
+    m_Stiffness: 1.5
   m_Enabled: 1
 --- !u!1 &1387357587919422576
 GameObject:
@@ -218,7 +218,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.9
-    m_Stiffness: 1.3
+    m_Stiffness: 1.5
   m_Enabled: 1
 --- !u!1 &1387357587984636860
 GameObject:
@@ -396,7 +396,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 1.1
+    m_Stiffness: 1.3
   m_Enabled: 1
 --- !u!1 &1387357588844051035
 GameObject:
@@ -458,7 +458,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 1.1
+    m_Stiffness: 1.3
   m_Enabled: 1
 --- !u!1 &1450804474592455673
 GameObject:
@@ -566,7 +566,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2560774961839078879}
   m_Layer: 0
-  m_Name: PlayerCar
+  m_Name: PlayerCar_old
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -716,21 +716,24 @@ MonoBehaviour:
     motor: 1
     steering: 0
   rigidBody: {fileID: 1612591396423599665}
-  maxSteeringAngle: 35
+  maxSteeringAngle: 50
   turnSpeed: 10
+  steeringStartModifier: 30
   steering: 0
   ackermannLeft: 0
   ackermannRight: 0
-  frontLeft: {fileID: 0}
-  frontRight: {fileID: 0}
-  rearLeft: {fileID: 0}
-  rearRight: {fileID: 0}
+  frontLeft: {fileID: 1387357588844051035}
+  frontRight: {fileID: 1387357588470608093}
+  rearLeft: {fileID: 1387357587919422576}
+  rearRight: {fileID: 1387357587366606414}
   wheelbase: 0
   rearTrack: 0
   turnRadius: 0
-  maxMotorTorque: 2000
+  speed: 0
+  relativeSpeed: 0
+  maxMotorTorque: 3000
   maxBrakeForce: 1000
-  TCForceCut: 5
+  TCForceCut: 10
   TCSlipThreshold: 0.7
   ARBStiffness: 5000
 --- !u!65 &1612591396423599667
@@ -758,6 +761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3e69f335dc8fa147bc51f94a2844058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  file_reference: 
 --- !u!1 &7655224147749611016
 GameObject:
   m_ObjectHideFlags: 0

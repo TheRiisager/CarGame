@@ -27,21 +27,18 @@ public class CarController : MonoBehaviour
     [SerializeField] private float rearTrack;
     [SerializeField] private float turnRadius;
 
-
     [Header("Motor")]
     [SerializeField] private float speed;
     [SerializeField] private float relativeSpeed;
     [SerializeField] private float maxMotorTorque;
     [SerializeField] private float maxBrakeForce;
 
-
     [Header("Traction Control")]
-    [SerializeField] private float TCForceCut = 5;
+    [SerializeField] private float TCForceCut = 10;
     [SerializeField] private float TCSlipThreshold = 0.7f;
 
     [Header("Antiroll Bar")]
     [SerializeField] private float ARBStiffness = 5000.0f;
-
 
     [Header("Differential NOT IN USE")]
 
@@ -61,11 +58,12 @@ public class CarController : MonoBehaviour
         relativeSpeed = transform.InverseTransformDirection(rigidBody.velocity).z * 3.6f;
         float motor = maxMotorTorque * inputManager.GetAccelerator();
         float brake = maxBrakeForce * inputManager.GetBrake();
-        print(brake);
         steering = DecreaseSteeringWithSpeed(speed); //Bugged
         turnRadius = wheelbase / Mathf.Sin(Mathf.Deg2Rad * steering); // This is currently used for steering!
+
         foreach (AxleInfo axleInfo in axleInfos)
         {
+
             if (axleInfo.steering)
             {
 
@@ -80,13 +78,12 @@ public class CarController : MonoBehaviour
 
             if (axleInfo.motor)
             {
-                axleInfo.leftWheel.motorTorque = axleInfo.rightWheel.motorTorque = TractionControl(motor, axleInfo.leftWheel, axleInfo.rightWheel);
+                //axleInfo.leftWheel.motorTorque = axleInfo.rightWheel.motorTorque = TractionControl(motor, axleInfo.leftWheel, axleInfo.rightWheel);
                 //AutoThrottleDirection(motor, axleInfo.leftWheel, axleInfo.rightWheel);
 
             }
 
             AntiRollBar(axleInfo.leftWheel, axleInfo.rightWheel); //experimental
-
 
             if (brake > 0)
             {
@@ -100,8 +97,20 @@ public class CarController : MonoBehaviour
                     axleInfo.leftWheel.motorTorque = -brake;
                     axleInfo.rightWheel.motorTorque = -brake;
                 }
-
             }
+            if (brake == 0)
+            {
+                if (axleInfo.axleType == "")
+                {
+                    axleInfo.leftWheel.brakeTorque = axleInfo.rightWheel.brakeTorque = brake * 0.8f; //Less brake force on rear.
+                }
+                else
+                {
+                    axleInfo.leftWheel.brakeTorque = axleInfo.rightWheel.brakeTorque = brake;
+                }
+                axleInfo.leftWheel.motorTorque = axleInfo.rightWheel.motorTorque = TractionControl(motor, axleInfo.leftWheel, axleInfo.rightWheel);
+            }
+
         }
         //Debug.Log(speed);
     }
@@ -251,4 +260,5 @@ public class AxleInfo
     public WheelCollider rightWheel;
     public bool motor; // is this wheel attached to motor?
     public bool steering; // does this wheel apply steer angle?
+    public string axleType;
 }
