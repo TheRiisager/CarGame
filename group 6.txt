@@ -1,0 +1,11 @@
+Group name: 
+Group 6
+
+Name and cphbusiness ID of each group member:
+Henrik Lønquist Thomasen    cph-ht92
+Alex Wagner                 cph-aw116
+Frederik Riisager Johnsen   cph-fj111
+Joakim Skaarup Stensnæs     cph-js437
+
+URl to github repo containing the project:
+https://github.com/TheRiisager/CarGame

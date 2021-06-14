@@ -1,8 +1,6 @@
-AlphaGold 25412
-AlphaSilver 32147
-AlphaBronze 35781
+AlphaGold 63000
+AlphaSilver 66000
+AlphaBronze 75000
 AlphaBot 78125
 AlphaBot 89151
 AlphaBot 98474
-Player 65001
-Player 65460
