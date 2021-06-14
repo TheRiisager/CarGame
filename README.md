@@ -1,7 +1,7 @@
 ## Group 6 car game 
 Exam project for gamedev elective at cphbusiness.  
 ### How to run
-Download the release: https://mega.nz/file/iR8x1YhQ#Qm3h4aFuOsrigLD3QMs8s0tAj5VO9d6n2WtIWVihjV4  
+Download the latest release from github.  
 Extract G6 Racer.zip and run "G6 Racer.exe".  
 ### Name and cphbusiness ID of each group member:  
 Henrik Lønquist Thomasen - cph-ht92  
